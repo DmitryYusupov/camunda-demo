@@ -3,12 +3,12 @@ package ru.yusdm.training.camunda.common.creditflow.services.checkuserpresence
 import org.camunda.bpm.engine.delegate.DelegateExecution
 import org.camunda.bpm.engine.delegate.JavaDelegate
 import org.springframework.stereotype.Component
+import ru.yusdm.training.camunda.common.creditflow.services.CreditFlowExecutor.FlowVariables.USER
+import ru.yusdm.training.camunda.common.creditflow.services.CreditFlowExecutor.FlowVariables.USER_ID
 import ru.yusdm.training.camunda.common.solutions.camunda.get
 import ru.yusdm.training.camunda.common.solutions.camunda.set
 import ru.yusdm.training.camunda.common.solutions.logger
 
-const val USER_ID = "userId"
-const val USER = "user"
 
 @Component("checkUserPresenceCamunda")
 class CheckUserPresenceCamunda(private val checkUserPresenceService: CheckUserPresenceService) : JavaDelegate {
@@ -23,6 +23,7 @@ class CheckUserPresenceCamunda(private val checkUserPresenceService: CheckUserPr
             val user = checkUserPresenceService.findUserById(userId)
             if (user != null) {
                 execution[USER] = user
+                log.info("User is present: UserName = ${user.name}")
             } else {
                 log.info("No user with id = $it in system")
             }

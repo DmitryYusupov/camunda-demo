@@ -12,7 +12,7 @@ class UserCreditController {
 
     private val log = UserCreditController::class.logger
 
-    @GetMapping("credit/{userId}")
+    @GetMapping("/credit/{userId}")
     fun takeCreditForUser(@PathVariable("userId") userId: Long) {
         log.info("Begin credit process for user with ID = ${userId}")
     }

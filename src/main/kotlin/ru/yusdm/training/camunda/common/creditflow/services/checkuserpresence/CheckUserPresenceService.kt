@@ -7,7 +7,6 @@ import ru.yusdm.training.camunda.common.creditflow.model.User
 class CheckUserPresenceService {
 
     fun findUserById(userId: Long): User? {
-        println(Thread.currentThread().name)
         return if (userId < 50L) {
             User(userId, "Name_$userId", if (userId % 2 == 0L) "Russia" else "Not supported country")
         } else {

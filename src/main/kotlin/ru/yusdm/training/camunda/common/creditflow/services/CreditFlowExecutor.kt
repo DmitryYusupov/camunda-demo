@@ -11,6 +11,8 @@ class CreditFlowExecutor(private val runtimeService: RuntimeService) {
         const val FLOW_NAME = "creditFlow"
         const val USER_ID = "userId"
         const val USER = "user"
+        const val CREDIT_HISTORY_STATUS = "creditHistoryStatus"
+        const val CREDIT_APPROVED = "creditApproved"
     }
 
     fun calcCreditForUser(userId: Long) {

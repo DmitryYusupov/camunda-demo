@@ -26,7 +26,7 @@ enum class Version(val version: String) {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	//implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${CAMUNDA.version}")
+	implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${CAMUNDA.version}")
 	//implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:${CAMUNDA.version}")
 	implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:${CAMUNDA.version}")
 	//implementation("org.camunda.bpm:camunda-engine-plugin-connect:${CAMUNDA.version}")

@@ -1,12 +1,13 @@
 package ru.yusdm.training.camunda.common.creditflow.services.verifyusercitizen
 
 import org.springframework.stereotype.Service
+import ru.yusdm.training.camunda.common.creditflow.model.User
 
 @Service
 class VerifyUserCitizenService {
 
-    fun verifyUserFromRussia(userId: Long) : Boolean {
-        return (userId % 2) == 0L
+    fun verifyUserFromRussia(user: User) : Boolean {
+        return (user.id % 2) == 0L
     }
 
 }

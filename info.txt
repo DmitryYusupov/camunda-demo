@@ -2,6 +2,8 @@ https://start.camunda.com/
 https://docs.camunda.org/manual/latest/user-guide/spring-boot-integration/configuration/#camunda-engine-properties
 https://camunda.com/best-practices/routing-events-to-processes/
 https://camunda.com/best-practices/dealing-with-problems-and-exceptions/
+https://forum.camunda.org/t/how-to-start-camunda-parallel-gateway-in-multi-threaded-mode/3698/2
+https://forum.camunda.org/t/something-confuse-with-service-task-between-parallel-gateway/16378/2
 
 Empty processes.xml
 The processes.xml may optionally be empty (left blank). In this case default values are used.

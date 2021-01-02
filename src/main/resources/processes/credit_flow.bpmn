@@ -56,13 +56,13 @@
     <bpmn:sequenceFlow id="Flow_0rjs118" name="Credit was NOT approved" sourceRef="Gateway_0d4z7m2" targetRef="Activity_0i4ie83">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${creditApproved == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:serviceTask id="Activity_0ddy0hu" name="Credit history status" camunda:delegateExpression="${creditHistoryCamunda}">
+    <bpmn:serviceTask id="Activity_0ddy0hu" name="Credit history status" camunda:asyncBefore="true" camunda:exclusive="false" camunda:delegateExpression="${creditHistoryCamunda}">
       <bpmn:incoming>Flow_02ergzx</bpmn:incoming>
       <bpmn:outgoing>Flow_1j7musm</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0q3m1tl" sourceRef="Gateway_0u6a6nc" targetRef="Activity_1b972e6" />
     <bpmn:sequenceFlow id="Flow_05iabjc" sourceRef="Activity_1b972e6" targetRef="Gateway_0d4z7m2" />
-    <bpmn:serviceTask id="Activity_1vv5abn" name="CreditHistory status 2" camunda:delegateExpression="${creditHistoryCamunda2}">
+    <bpmn:serviceTask id="Activity_1vv5abn" name="CreditHistory status 2" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:delegateExpression="${creditHistoryCamunda2}">
       <bpmn:incoming>Flow_009gykv</bpmn:incoming>
       <bpmn:outgoing>Flow_13439ao</bpmn:outgoing>
     </bpmn:serviceTask>

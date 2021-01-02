@@ -16,7 +16,6 @@ class CreditHistoryCamunda(private val creditHistoryService: CreditHistoryServic
 
     override fun execute(execution: DelegateExecution) {
         val userId: Long = execution[USER_ID]!!
-        log.info("Fetch credit history for user with id = $userId")
         execution[CREDIT_HISTORY_STATUS] = creditHistoryService.checkUserCreditHistory(userId).name
     }
 

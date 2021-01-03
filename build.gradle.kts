@@ -7,6 +7,7 @@ plugins {
 	kotlin("jvm") version "1.4.21"
 	kotlin("plugin.spring") version "1.4.21"
 	kotlin("plugin.jpa") version "1.4.21"
+	kotlin("plugin.allopen") version "1.4.21"
 }
 
 group = "ru.yusdm.training"
@@ -16,6 +17,12 @@ java.sourceCompatibility = JavaVersion.VERSION_15
 repositories {
 	mavenCentral()
 	maven { url = uri("https://repo.spring.io/milestone") }
+}
+
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.Embeddable")
+	annotation("javax.persistence.MappedSuperclass")
 }
 
 extra["springCloudVersion"] = "2020.0.0"
@@ -44,7 +51,7 @@ dependencies {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "15"
+		jvmTarget = "14"
 	}
 }
 

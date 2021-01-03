@@ -5,6 +5,10 @@ https://camunda.com/best-practices/dealing-with-problems-and-exceptions/
 https://forum.camunda.org/t/how-to-start-camunda-parallel-gateway-in-multi-threaded-mode/3698/2
 https://forum.camunda.org/t/something-confuse-with-service-task-between-parallel-gateway/16378/2
 
+//Work with completed process
+https://forum.camunda.org/t/retrieving-results-from-process-instance/9024
+http://stage.docs.camunda.org/manual/latest/user-guide/process-engine/process-engine-concepts/#variables-in-return
+
 Empty processes.xml
 The processes.xml may optionally be empty (left blank). In this case default values are used.
 The empty processes.xml corresponds to the following configuration:

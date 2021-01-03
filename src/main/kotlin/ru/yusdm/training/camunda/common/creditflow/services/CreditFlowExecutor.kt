@@ -1,6 +1,7 @@
 package ru.yusdm.training.camunda.common.creditflow.services
 
 import org.camunda.bpm.engine.RuntimeService
+import org.camunda.bpm.engine.runtime.ProcessInstance
 import org.springframework.stereotype.Component
 
 
@@ -16,7 +17,7 @@ class CreditFlowExecutor(private val runtimeService: RuntimeService) {
     }
 
     fun calcCreditForUser(userId: Long) {
-        runtimeService.startProcessInstanceByKey(FLOW_NAME, mapOf(
+        val processInstance: ProcessInstance = runtimeService.startProcessInstanceByKey(FLOW_NAME, mapOf(
             USER_ID to userId
         ))
     }

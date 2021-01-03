@@ -17,6 +17,7 @@ class TransactionFlowDemoController(private val runtimeService: RuntimeService) 
     @GetMapping("/demo")
     fun demoFlow() {
         log.info("Demo transaction flow")
-        runtimeService.startProcessInstanceByKey("transaction_flow")
+        val process = runtimeService.startProcessInstanceByKey("transaction_flow")
+        log.info("Process is ended " + process.isEnded.toString())
     }
 }

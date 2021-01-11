@@ -4,10 +4,10 @@ import org.camunda.bpm.engine.delegate.DelegateExecution
 import org.camunda.bpm.engine.delegate.JavaDelegate
 import org.springframework.stereotype.Component;
 
-@Component("messageFlowFirstStepCamunda")
-class MessageFlowFirstStepCamunda(private val messageFlowFirstStep: MessageFlowFirstStep) : JavaDelegate {
+@Component("messageFlowTicketRequestCamunda")
+class MessageFlowTicketRequestCamunda(private val messageFlowTicketRequest: MessageFlowTicketRequest) : JavaDelegate {
 
     override fun execute(execution: DelegateExecution) {
-        messageFlowFirstStep.execute()
+        messageFlowTicketRequest.execute()
     }
 }

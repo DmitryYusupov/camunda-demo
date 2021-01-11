@@ -1,13 +1,13 @@
-package ru.yusdm.training.camunda.common.messageintermediatecatchingevent
+package ru.yusdm.training.camunda.common.messageintermediatecatchingevent.service.ticketrequest
 
 import org.springframework.stereotype.Service
 import ru.yusdm.training.camunda.common.solutions.logger
 import java.util.concurrent.atomic.AtomicInteger
 
 @Service
-class MessageFlowTicketRequest {
+class TicketRequestService {
 
-    private val log = MessageFlowTicketRequest::class.logger
+    private val log = TicketRequestService::class.logger
     private val userIdGenerator = AtomicInteger(0)
 
     fun execute() {

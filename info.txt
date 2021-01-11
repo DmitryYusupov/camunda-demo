@@ -25,3 +25,6 @@ The empty processes.xml corresponds to the following configuration:
   </process-archive>
 
 </process-application>
+
+//Info about messages
+https://docs.camunda.org/manual/7.14/reference/bpmn20/events/message-events/

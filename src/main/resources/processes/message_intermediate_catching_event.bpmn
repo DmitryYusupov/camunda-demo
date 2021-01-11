@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0ewgr4y" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
   <bpmn:collaboration id="Collaboration_15695lq">
-    <bpmn:participant id="Participant_1ntwtau" name="Message flow" processRef="Message_Intermediate_Catching_Event_Flow" />
+    <bpmn:participant id="Participant_1ntwtau" name="Message flow" processRef="message_Intermediate_Catching_Event_Flow" />
   </bpmn:collaboration>
-  <bpmn:process id="Message_Intermediate_Catching_Event_Flow" name="Message_Intermediate_Catching_Event_Flow" isExecutable="true">
+  <bpmn:process id="message_Intermediate_Catching_Event_Flow" name="message_Intermediate_Catching_Event_Flow" isExecutable="true">
     <bpmn:startEvent id="Event_0s4g3fc">
       <bpmn:outgoing>Flow_13x6k9o</bpmn:outgoing>
     </bpmn:startEvent>
@@ -28,7 +28,7 @@
       <bpmn:outgoing>Flow_1wowmh6</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
-  <bpmn:message id="Message_0v1fsvp" name="MessageFlowTicketBidResponse" />
+  <bpmn:message id="Message_0v1fsvp" name="ticketBidResponseMessage33" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_15695lq">
       <bpmndi:BPMNShape id="Participant_1ntwtau_di" bpmnElement="Participant_1ntwtau" isHorizontal="true">

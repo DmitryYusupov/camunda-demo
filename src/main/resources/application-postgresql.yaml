@@ -6,7 +6,7 @@ spring:
     password: 111
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
 management:
   endpoints:

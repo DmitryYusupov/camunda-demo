@@ -28,3 +28,7 @@ The empty processes.xml corresponds to the following configuration:
 
 //Info about messages
 https://docs.camunda.org/manual/7.14/reference/bpmn20/events/message-events/
+
+//info about async processing
+https://stage.docs.camunda.org/manual/7.3/guides/user-guide/#process-engine-transactions-in-processes-understanding-asynchronous-continuations
+https://forum.camunda.org/t/whats-the-best-practice-to-set-camunda-exclusive-true-camunda-asyncbefore-true/16137

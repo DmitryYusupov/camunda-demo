@@ -15,6 +15,9 @@
       <bpmn:outgoing>Flow_15bj0zx</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Activity_0731z9o" name="ServiceB" camunda:asyncBefore="true" camunda:delegateExpression="${serviceBCamunda}">
+      <bpmn:extensionElements>
+        <camunda:failedJobRetryTimeCycle>R0/PT1S</camunda:failedJobRetryTimeCycle>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_15bj0zx</bpmn:incoming>
       <bpmn:outgoing>Flow_1c72201</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -27,17 +30,17 @@
       <bpmndi:BPMNShape id="Participant_1rlgx77_di" bpmnElement="Participant_1rlgx77" isHorizontal="true">
         <dc:Bounds x="129" y="79" width="600" height="250" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1c72201_di" bpmnElement="Flow_1c72201">
-        <di:waypoint x="570" y="200" />
-        <di:waypoint x="622" y="200" />
+      <bpmndi:BPMNEdge id="Flow_1poco1w_di" bpmnElement="Flow_1poco1w">
+        <di:waypoint x="238" y="200" />
+        <di:waypoint x="310" y="200" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_15bj0zx_di" bpmnElement="Flow_15bj0zx">
         <di:waypoint x="410" y="200" />
         <di:waypoint x="470" y="200" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1poco1w_di" bpmnElement="Flow_1poco1w">
-        <di:waypoint x="238" y="200" />
-        <di:waypoint x="310" y="200" />
+      <bpmndi:BPMNEdge id="Flow_1c72201_di" bpmnElement="Flow_1c72201">
+        <di:waypoint x="570" y="200" />
+        <di:waypoint x="622" y="200" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="202" y="182" width="36" height="36" />

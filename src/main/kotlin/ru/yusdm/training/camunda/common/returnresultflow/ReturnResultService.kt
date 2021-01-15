@@ -1,4 +1,4 @@
-package ru.yusdm.training.camunda.common.longrunningflow
+package ru.yusdm.training.camunda.common.returnresultflow
 
 import org.springframework.stereotype.Service
 import ru.yusdm.training.camunda.common.solutions.logger
@@ -13,7 +13,7 @@ class LongRunningService {
 
     fun execute(): String {
         log.info("Long running blocking task begin")
-        Thread.sleep(10000)
+        Thread.sleep(5000)
         log.info("Long running blocking task end")
         return "Long running result ${counter.incrementAndGet()}"
     }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_10qnuwq" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
   <bpmn:collaboration id="Collaboration_0h1mlnv">
-    <bpmn:participant id="Participant_0hcta31" name="long_running_flow" processRef="long_running_flow" />
+    <bpmn:participant id="Participant_0hcta31" name="return_result_flow" processRef="return_result_flow" />
   </bpmn:collaboration>
-  <bpmn:process id="long_running_flow" name="long_running_flow" isExecutable="true">
+  <bpmn:process id="return_result_flow" name="return_result_flow" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_03j6mt3</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_02s1btd">
       <bpmn:incoming>Flow_0zocbvo</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Activity_1imv57n" name="long running operation" camunda:delegateExpression="${longRunningCamunda}">
+    <bpmn:serviceTask id="Activity_1imv57n" name="long running operation" camunda:delegateExpression="${returnResultCamunda}">
       <bpmn:incoming>Flow_03j6mt3</bpmn:incoming>
       <bpmn:outgoing>Flow_0zocbvo</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -22,15 +22,15 @@
       <bpmndi:BPMNShape id="Participant_0hcta31_di" bpmnElement="Participant_0hcta31" isHorizontal="true">
         <dc:Bounds x="129" y="79" width="600" height="250" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0zocbvo_di" bpmnElement="Flow_0zocbvo">
-        <di:waypoint x="420" y="210" />
-        <di:waypoint x="472" y="210" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_03j6mt3_di" bpmnElement="Flow_03j6mt3">
         <di:waypoint x="248" y="200" />
         <di:waypoint x="284" y="200" />
         <di:waypoint x="284" y="210" />
         <di:waypoint x="320" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zocbvo_di" bpmnElement="Flow_0zocbvo">
+        <di:waypoint x="420" y="210" />
+        <di:waypoint x="472" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="212" y="182" width="36" height="36" />

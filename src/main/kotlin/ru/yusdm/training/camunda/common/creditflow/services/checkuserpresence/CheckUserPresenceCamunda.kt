@@ -25,6 +25,7 @@ class CheckUserPresenceCamunda(private val checkUserPresenceService: CheckUserPr
                 execution[USER] = user
                 log.info("User is present: UserName = ${user.name}")
             } else {
+                execution.setVariable(USER, null)
                 log.info("No user with id = $it in system")
             }
         } ?: kotlin.run {

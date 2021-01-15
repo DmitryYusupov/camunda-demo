@@ -19,6 +19,7 @@
     <bpmn:serviceTask id="Activity_0i4ie83" name="Credit reject" camunda:delegateExpression="${creditRejectCamunda}">
       <bpmn:incoming>Flow_1vhx8wb</bpmn:incoming>
       <bpmn:incoming>Flow_0rjs118</bpmn:incoming>
+      <bpmn:incoming>Flow_1pem8vf</bpmn:incoming>
       <bpmn:outgoing>Flow_14gy3u4</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:endEvent id="Event_1a85rwj">
@@ -36,7 +37,6 @@
     <bpmn:sequenceFlow id="Flow_1x4xnpo" sourceRef="StartEvent_1" targetRef="Activity_0x57xi5" />
     <bpmn:sequenceFlow id="Flow_0bwap1i" sourceRef="Activity_0x57xi5" targetRef="Gateway_0bchfzt" />
     <bpmn:sequenceFlow id="Flow_14gy3u4" sourceRef="Activity_0i4ie83" targetRef="Event_1a85rwj" />
-    <bpmn:sequenceFlow id="Flow_0v0lk2f" sourceRef="Activity_18547x2" targetRef="Gateway_1eeo3bk" />
     <bpmn:sequenceFlow id="Flow_009gykv" sourceRef="Gateway_1eeo3bk" targetRef="Activity_1vv5abn" />
     <bpmn:sequenceFlow id="Flow_02ergzx" sourceRef="Gateway_1eeo3bk" targetRef="Activity_0ddy0hu" />
     <bpmn:sequenceFlow id="Flow_1j7musm" sourceRef="Activity_0ddy0hu" targetRef="Gateway_0u6a6nc" />
@@ -49,7 +49,7 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0q3m1tl" sourceRef="Gateway_0u6a6nc" targetRef="Activity_1b972e6" />
     <bpmn:sequenceFlow id="Flow_05iabjc" sourceRef="Activity_1b972e6" targetRef="Gateway_0d4z7m2" />
-    <bpmn:serviceTask id="Activity_1vv5abn" name="CreditHistory status 2" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:delegateExpression="${creditHistoryCamunda2}">
+    <bpmn:serviceTask id="Activity_1vv5abn" name="Verify income" camunda:delegateExpression="${incomeVerifyCamunda}">
       <bpmn:incoming>Flow_009gykv</bpmn:incoming>
       <bpmn:outgoing>Flow_13439ao</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -67,19 +67,31 @@
       <bpmn:incoming>Flow_0q3m1tl</bpmn:incoming>
       <bpmn:outgoing>Flow_05iabjc</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_18547x2" name="Verify user from Russia" camunda:delegateExpression="${verifyUserCitizenServiceCamunda}">
-      <bpmn:incoming>Flow_1hql6k5</bpmn:incoming>
-      <bpmn:outgoing>Flow_0v0lk2f</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:parallelGateway id="Gateway_1eeo3bk">
-      <bpmn:incoming>Flow_0v0lk2f</bpmn:incoming>
+      <bpmn:incoming>Flow_1qsuqj7</bpmn:incoming>
       <bpmn:outgoing>Flow_009gykv</bpmn:outgoing>
       <bpmn:outgoing>Flow_02ergzx</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:serviceTask id="Activity_0ddy0hu" name="Credit history status" camunda:asyncBefore="true" camunda:exclusive="false" camunda:delegateExpression="${creditHistoryCamunda}">
+    <bpmn:serviceTask id="Activity_0ddy0hu" name="Credit history status" camunda:delegateExpression="${creditHistoryCamunda}">
       <bpmn:incoming>Flow_02ergzx</bpmn:incoming>
       <bpmn:outgoing>Flow_1j7musm</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1a65ro3" sourceRef="Activity_18547x2" targetRef="Gateway_1fhwrjj" />
+    <bpmn:sequenceFlow id="Flow_1qsuqj7" name="From SPB" sourceRef="Gateway_1fhwrjj" targetRef="Gateway_1eeo3bk">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${userFromSpb == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_18547x2" name="Verify user from Spb" camunda:delegateExpression="${verifyUserAddressServiceCamunda}">
+      <bpmn:incoming>Flow_1hql6k5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1a65ro3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_1fhwrjj">
+      <bpmn:incoming>Flow_1a65ro3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qsuqj7</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1pem8vf</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1pem8vf" name="Not From Spb" sourceRef="Gateway_1fhwrjj" targetRef="Activity_0i4ie83">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${userFromSpb == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_033svcu">
@@ -128,10 +140,6 @@
         <di:waypoint x="820" y="320" />
         <di:waypoint x="910" y="320" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0v0lk2f_di" bpmnElement="Flow_0v0lk2f">
-        <di:waypoint x="750" y="230" />
-        <di:waypoint x="795" y="230" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14gy3u4_di" bpmnElement="Flow_14gy3u4">
         <di:waypoint x="1360" y="590" />
         <di:waypoint x="1492" y="590" />
@@ -147,9 +155,9 @@
       <bpmndi:BPMNEdge id="Flow_1hql6k5_di" bpmnElement="Flow_1hql6k5">
         <di:waypoint x="470" y="415" />
         <di:waypoint x="470" y="230" />
-        <di:waypoint x="650" y="230" />
+        <di:waypoint x="540" y="230" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="502" y="217" width="64" height="14" />
+          <dc:Bounds x="463" y="217" width="63" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1vhx8wb_di" bpmnElement="Flow_1vhx8wb">
@@ -158,6 +166,25 @@
         <di:waypoint x="1260" y="590" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="477" y="573" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1a65ro3_di" bpmnElement="Flow_1a65ro3">
+        <di:waypoint x="640" y="230" />
+        <di:waypoint x="685" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qsuqj7_di" bpmnElement="Flow_1qsuqj7">
+        <di:waypoint x="735" y="230" />
+        <di:waypoint x="795" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="742" y="212" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pem8vf_di" bpmnElement="Flow_1pem8vf">
+        <di:waypoint x="710" y="255" />
+        <di:waypoint x="710" y="560" />
+        <di:waypoint x="1260" y="560" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="691" y="405" width="69" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
@@ -193,14 +220,17 @@
       <bpmndi:BPMNShape id="Activity_1lclwiu_di" bpmnElement="Activity_1b972e6">
         <dc:Bounds x="1160" y="180" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_02kgcem_di" bpmnElement="Activity_18547x2">
-        <dc:Bounds x="650" y="190" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1uljwp9_di" bpmnElement="Gateway_1eeo3bk">
         <dc:Bounds x="795" y="205" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1schq65_di" bpmnElement="Activity_0ddy0hu">
         <dc:Bounds x="910" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02kgcem_di" bpmnElement="Activity_18547x2">
+        <dc:Bounds x="540" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1fhwrjj_di" bpmnElement="Gateway_1fhwrjj" isMarkerVisible="true">
+        <dc:Bounds x="685" y="205" width="50" height="50" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -12,7 +12,9 @@ class CreditFlowExecutor(private val runtimeService: RuntimeService) {
         const val FLOW_NAME = "creditFlow"
         const val USER_ID = "userId"
         const val USER = "user"
+        const val USER_FROM_SPB = "userFromSpb"
         const val CREDIT_HISTORY_STATUS = "creditHistoryStatus"
+        const val INCOME_STATUS = "incomeStatus"
         const val CREDIT_APPROVED = "creditApproved"
     }
 

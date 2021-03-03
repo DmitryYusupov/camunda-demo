@@ -12,6 +12,7 @@ import ru.yusdm.training.camunda.common.solutions.logger
 class UserCreditController(private val creditFlowExecutor: CreditFlowExecutor) {
 
     private val log = UserCreditController::class.logger
+
     //http://localhost:8080/api/user/credit/1
     @GetMapping("/credit/{userId}")
     fun takeCreditForUser(@PathVariable("userId") userId: Long) {

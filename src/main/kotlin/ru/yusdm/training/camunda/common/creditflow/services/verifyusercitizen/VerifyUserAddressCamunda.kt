@@ -16,16 +16,14 @@ class VerifyUserAddressServiceCamunda(private val verifyUserAddressService: Veri
     private val log = VerifyUserAddressServiceCamunda::class.logger
 
     override fun execute(execution: DelegateExecution) {
-        val user: User? = execution[USER]
-        user?.let {
-            log.info("Verify user address")
-            val userFromSpb = verifyUserAddressService.verifyUserFromSpb(user)
-            if (userFromSpb){
-                log.info("User from Spb")
-            }else{
-                log.info("User not from Spb")
-            }
-            execution[USER_FROM_SPB] = userFromSpb
+        val user: User = execution[USER]!!
+        log.info("Verify user address")
+        val userFromSpb = verifyUserAddressService.verifyUserFromSpb(user)
+        if (userFromSpb) {
+            log.info("User from Spb")
+        } else {
+            log.info("User not from Spb")
         }
+        execution[USER_FROM_SPB] = userFromSpb
     }
 }
